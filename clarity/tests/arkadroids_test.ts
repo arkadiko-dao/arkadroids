@@ -128,3 +128,45 @@ Clarinet.test({
         tokenOwner.result.expectOk().expectSome().expectPrincipal(wallet_2.address);
     }
 });
+
+Clarinet.test({
+    name: "Only admin user can set curator",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get('wallet_1')!;
+        let wallet_2 = accounts.get('wallet_2')!;
+
+        let deployerBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'set-curator-address', 
+                [types.principal(wallet_1.address)], 
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'set-curator-address', 
+                [types.principal(wallet_1.address)], 
+                deployer.address)
+        ]);
+        
+        deployerBlock.receipts[0].result.expectErr().expectUint(103);
+        deployerBlock.receipts[1].result.expectOk().expectBool(true);
+
+        let curatorBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'set-curator-address', 
+                [types.principal(wallet_2.address)], 
+                wallet_2.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'set-curator-address', 
+                [types.principal(wallet_2.address)], 
+                wallet_1.address)
+        ]);
+
+        curatorBlock.receipts[0].result.expectErr().expectUint(103);
+        curatorBlock.receipts[1].result.expectOk().expectBool(true);
+
+    }
+});
