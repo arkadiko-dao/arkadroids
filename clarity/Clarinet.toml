@@ -5,6 +5,10 @@ description = ""
 telemetry = false
 requirements = []
 cache_dir = "/Users/yannisdecl/.clarinet/cache"
+[contracts.arkadroids]
+path = "contracts/arkadroids.clar"
+depends_on = ["sip009-nft-trait"]
+
 [contracts.sip009-nft-trait]
 path = "contracts/sip009-nft-trait.clar"
 depends_on = []
