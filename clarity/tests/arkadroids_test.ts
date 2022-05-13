@@ -170,3 +170,28 @@ Clarinet.test({
 
     }
 });
+
+Clarinet.test({
+    name: "Only admin user can freeze metadata",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get('wallet_1')!;
+        let wallet_2 = accounts.get('wallet_2')!;
+
+        let deployerBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'freeze-metadata', 
+                [], 
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'freeze-metadata', 
+                [], 
+                deployer.address)
+        ]);
+        
+        deployerBlock.receipts[0].result.expectErr().expectUint(103);
+        deployerBlock.receipts[1].result.expectOk().expectBool(true);
+    }
+});
