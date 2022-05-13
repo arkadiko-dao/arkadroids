@@ -195,3 +195,73 @@ Clarinet.test({
         deployerBlock.receipts[1].result.expectOk().expectBool(true);
     }
 });
+
+Clarinet.test({
+    name: "Only admin user can set base uri",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get('wallet_1')!;
+
+        let deployerBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'set-base-uri', 
+                [types.ascii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3N0/")], 
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'set-base-uri', 
+                [types.ascii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3N0/")], 
+                deployer.address)
+        ]);
+        
+        deployerBlock.receipts[0].result.expectErr().expectUint(103);
+        deployerBlock.receipts[1].result.expectOk().expectBool(true);
+    }
+});
+
+Clarinet.test({
+    name: "Only can set base uri if metadata is not frozen",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get('wallet_1')!;
+
+        let deployerBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'set-base-uri', 
+                [types.ascii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3N0/")], 
+                deployer.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'freeze-metadata', 
+                [], 
+                deployer.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'set-base-uri',
+                [types.ascii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3N8/")], 
+                deployer.address)
+        ]);
+        
+        deployerBlock.receipts[0].result.expectOk().expectBool(true);
+        deployerBlock.receipts[1].result.expectOk().expectBool(true);
+        deployerBlock.receipts[2].result.expectErr().expectUint(111);
+    }
+});
+
+Clarinet.test({
+    name: "Get base uri",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get('wallet_1')!;
+
+        let uri = chain.callReadOnlyFn(
+            'arkadroids', 
+            'get-token-uri', 
+            [types.uint(1)], 
+            deployer.address);
+        
+        uri.result.expectOk().expectSome().expectAscii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn/{id}.json");
+    }
+});

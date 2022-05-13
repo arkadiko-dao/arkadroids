@@ -24,7 +24,7 @@
 )
 
 (define-read-only (get-token-uri (token-id uint))
-    (ok none)
+    (ok (some (concat (concat (var-get ipfs-root) "{id}") ".json")))
 )
 
 (define-read-only (get-owner (token-id uint))
@@ -56,8 +56,7 @@
     (begin
         (asserts! (is-admin-user tx-sender) err-non-admin-user)
         (asserts! (not (var-get metadata-frozen)) err-metadata-frozen)
-        (var-set ipfs-root new-base-uri)
-        (ok true)
+        (ok (var-set ipfs-root new-base-uri))
     )
 )
 
