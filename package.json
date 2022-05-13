@@ -1,0 +1,11 @@
+{
+  "name": "arkadroids",
+  "version": "0.0.1",
+  "author": "Yannis De Cleene",
+  "repository": "https://github.com/arkadiko-dao/arkadroids.git",
+  "private": true,
+  "engines": {
+    "node": ">=14"
+  },
+  "workspaces": ["clarity", "web"]
+}
