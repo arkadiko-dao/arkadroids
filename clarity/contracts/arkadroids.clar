@@ -6,9 +6,8 @@
 (define-constant contract-owner tx-sender)
 (define-constant mint-limit u122)
 
-(define-constant err-owner-only (err u100))
 (define-constant err-not-token-owner (err u101))
-(define-constant err-mint-limit-reached (err u102))
+(define-constant err-mint-limit-reached (err u102));;
 (define-constant err-non-admin-user (err u103))
 (define-constant err-listed (err u105))
 (define-constant err-listing-not-found (err u106))
@@ -18,9 +17,9 @@
 
 ;; Internal variables
 (define-data-var last-token-id uint u1)
-(define-data-var curator-address principal 'SP2N3BAG4GBF8NHRPH6AY4YYH1SP6NK5TGCY7RDFA)
+(define-data-var curator-address principal 'SP11YWHSZ2DFAK4W2VRRXM8XH6HYNCD8JXRGZDJVJ)
 (define-data-var metadata-frozen bool false)
-(define-data-var ipfs-root (string-ascii 80) "ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn/")
+(define-data-var ipfs-root (string-ascii 80) "ipfs://QmWp6KZyebAoXqK4euKNagD1RVZRFvHvdGDD99c4DWo862/")
 
 ;; Maps
 (define-map token-count principal uint)
@@ -58,7 +57,7 @@
 ;; Non-Custodial
 (define-public (transfer (token-id uint) (sender principal) (recipient principal))
     (begin
-        (asserts! (is-eq tx-sender sender) err-not-token-owner)
+        (asserts! (is-sender-owner token-id) err-not-token-owner)
         (asserts! (is-none (map-get? market token-id)) err-listed)
         (trnsfr token-id sender recipient)
     )
@@ -77,7 +76,7 @@
 
 (define-public (burn (token-id uint))
     (begin 
-        (asserts! (is-owner token-id tx-sender) err-not-token-owner)
+        (asserts! (is-sender-owner token-id) err-not-token-owner)
         (nft-burn? arkadroids token-id tx-sender)
     )
 )
@@ -148,13 +147,11 @@
 )
 
 ;; Private
-(define-private (is-owner (token-id uint) (user principal))
-    (is-eq user (unwrap! (nft-get-owner? arkadroids token-id) false))
-)
-
 (define-private (is-sender-owner (token-id uint))
     (let 
-        ((owner (unwrap! (nft-get-owner? arkadroids token-id) false)))
+        (
+            (owner (unwrap! (nft-get-owner? arkadroids token-id) false))
+        )
         (or (is-eq tx-sender owner) (is-eq contract-caller owner))
     )
 )
@@ -167,8 +164,6 @@
     (let 
         (
             (last-nft-id (var-get last-token-id))
-            (enabled (asserts! (<= last-nft-id mint-limit) err-mint-limit-reached))
-            (art-addr (var-get curator-address))
             (id-reached (fold mint-many-iter orders last-nft-id))
             (current-balance (get-balance tx-sender))
         )

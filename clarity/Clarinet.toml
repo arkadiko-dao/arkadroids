@@ -11,7 +11,11 @@ depends_on = ["sip009-nft-trait", "commission-trait"]
 
 [contracts.arkadroids-stacks-art-commission]
 path = "contracts/arkadroids-stacks-art-commission.clar"
-depends_on = []
+depends_on = ["commission-trait"]
+
+[contracts.arkadroids-test-commission]
+path = "contracts/arkadroids-test-commission.clar"
+depends_on = ["commission-trait"]
 
 [contracts.commission-trait]
 path = "contracts/commission-trait.clar"
