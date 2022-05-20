@@ -11,7 +11,7 @@ const toggle = async () => {
     contractAddress: CONTRACT_ADDRESS,
     contractName: 'arkadroids',
     functionName: 'set-base-uri',
-    functionArgs: [tx.stringAsciiCV('ipfs://something/')],
+    functionArgs: [tx.stringAsciiCV('ipfs://QmSmxfyhrPKL66ppcMUAaoHdvsrg9eVp2KJHSVM1sanU9d/')],
     senderKey: process.env.STACKS_PRIVATE_KEY,
     postConditionMode: 1,
     network

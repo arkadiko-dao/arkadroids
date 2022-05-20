@@ -1,0 +1,20 @@
+{
+	"name": "Arkadroid #1",
+	"description": "Arkadroids",
+	"image": "ipfs://QmXmam1z9syoJUNMBA7MV9bxiwEQn2JpWAEUjxAJKoJcn4/1.png",
+	"edition": 1,
+	"date": 1647901194370,
+	"attributes": [{
+			"trait_type": "Special edition",
+			"value": "Yes"
+		},
+		{
+			"trait_type": "Skin",
+			"value": "Gold"
+		},
+		{
+			"trait_type": "Eyes",
+			"value": "Lydian"
+		}
+	]
+}
