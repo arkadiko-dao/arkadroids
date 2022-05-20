@@ -7,7 +7,15 @@ requirements = []
 cache_dir = "/Users/yannisdecl/.clarinet/cache"
 [contracts.arkadroids]
 path = "contracts/arkadroids.clar"
-depends_on = ["sip009-nft-trait"]
+depends_on = ["sip009-nft-trait", "commission-trait"]
+
+[contracts.arkadroids-stacks-art-commission]
+path = "contracts/arkadroids-stacks-art-commission.clar"
+depends_on = []
+
+[contracts.commission-trait]
+path = "contracts/commission-trait.clar"
+depends_on = []
 
 [contracts.sip009-nft-trait]
 path = "contracts/sip009-nft-trait.clar"

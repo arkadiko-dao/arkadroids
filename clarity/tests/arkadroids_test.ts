@@ -6,19 +6,24 @@ Clarinet.test({
     name: "Deployer can mint nft",
     async fn(chain: Chain, accounts: Map<string, Account>) {
         let deployer = accounts.get('deployer')!;
-        let recipient = accounts.get('wallet_1')!;
+        let nonDeployer = accounts.get('wallet_1')!;
+        let recipient = accounts.get('wallet_2')!;
 
         let block = chain.mineBlock([
             Tx.contractCall(
                 'arkadroids', 
+                'mint',
+                [], 
+                deployer.address),
+            Tx.contractCall(
+                'arkadroids', 
                 'mint', 
-                [types.principal(recipient.address)], 
-                deployer.address)
+                [],
+                nonDeployer.address)
         ]);
 
-        let [receipt] = block.receipts;
-        
-        receipt.result.expectOk().expectUint(1);
+        block.receipts[0].result.expectOk().expectUint(2);
+        block.receipts[1].result.expectErr().expectUint(103);
         
         let lastTokenId = chain.callReadOnlyFn(
             'arkadroids', 
@@ -34,27 +39,13 @@ Clarinet.test({
             [types.uint(1)], 
             deployer.address);
 
-        tokenOwner.result.expectOk().expectSome().expectPrincipal(recipient.address);
-    }
-});
+        tokenOwner.result.expectOk().expectSome().expectPrincipal(deployer.address);
 
-Clarinet.test({
-    name: "Non-deployer can't mint nft",
-    async fn(chain: Chain, accounts: Map<string, Account>) {
-        let nonDeployer = accounts.get('wallet_1')!;
-        let recipient = accounts.get('wallet_1')!;
-
-        let block = chain.mineBlock([
-            Tx.contractCall(
-                'arkadroids', 
-                'mint', 
-                [types.principal(recipient.address)],
-                nonDeployer.address)
-        ]);
-
-        let [receipt] = block.receipts;
-
-        receipt.result.expectErr().expectUint(100);
+        chain.callReadOnlyFn(
+            'arkadroids', 
+            'get-owner', 
+            [types.uint(2)], 
+            deployer.address).result.expectOk().expectNone();
     }
 });
 
@@ -64,68 +55,68 @@ Clarinet.test({
         let deployer = accounts.get('deployer')!;
         let wallet_1 = accounts.get("wallet_1")!;
         let wallet_2 = accounts.get("wallet_2")!;
-        let wallet_3 = accounts.get("wallet_3")!;
 
         let mintingBlock = chain.mineBlock([
             Tx.contractCall(
                 'arkadroids', 
-                'mint', 
-                [types.principal(deployer.address)], 
-                deployer.address),
-            Tx.contractCall(
-                'arkadroids', 
-                'mint', 
-                [types.principal(wallet_1.address)], 
+                'mint',
+                [], 
                 deployer.address)
         ]);
 
-        mintingBlock.receipts[0].result.expectOk().expectUint(1);
-        mintingBlock.receipts[1].result.expectOk().expectUint(2);
+        mintingBlock.receipts[0].result.expectOk().expectUint(2);
 
-        let tokenTwoOwner = chain.callReadOnlyFn(
-            'arkadroids', 
-            'get-owner', 
-            [types.uint(2)], 
-            deployer.address);
-
-        tokenTwoOwner.result.expectOk().expectSome().expectPrincipal(wallet_1.address);
+        let call = chain.callReadOnlyFn(
+            "arkadroids",
+            "get-balance",
+            [types.principal(deployer.address)],
+            deployer.address
+        );
+        call.result.expectUint(1);
 
         let transferBlock = chain.mineBlock([
             Tx.contractCall(
                 'arkadroids', 
                 'transfer', 
-                [types.uint(1), types.principal(deployer.address), types.principal(wallet_2.address)], 
+                [types.uint(1), types.principal(deployer.address), types.principal(wallet_1.address)], 
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'transfer', 
+                [types.uint(1), types.principal(wallet_1.address), types.principal(wallet_2.address)], 
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'transfer', 
+                [types.uint(1), types.principal(deployer.address), types.principal(wallet_1.address)], 
                 deployer.address),
             Tx.contractCall(
                 'arkadroids', 
                 'transfer', 
-                [types.uint(2), types.principal(wallet_1.address), types.principal(wallet_2.address)], 
-                deployer.address),
-            Tx.contractCall(
-                'arkadroids', 
-                'transfer', 
-                [types.uint(2), types.principal(deployer.address), types.principal(wallet_2.address)], 
-                deployer.address)
+                [types.uint(1), types.principal(wallet_1.address), types.principal(wallet_2.address)], 
+                wallet_1.address)
         ]);
 
-        transferBlock.receipts[0].result.expectOk();
-        transferBlock.receipts[1].result.expectErr().expectUint(101);
-        transferBlock.receipts[2].result.expectErr().expectUint(1);
+        transferBlock.receipts[0].result.expectErr().expectUint(101);
+        transferBlock.receipts[1].result.expectErr().expectUint(1);
+        transferBlock.receipts[2].result.expectOk();
+        transferBlock.receipts[3].result.expectOk();
 
-        chain.callReadOnlyFn(
-            'arkadroids', 
-            'get-owner', 
-            [types.uint(2)], 
-            deployer.address)
-        .result.expectOk().expectSome().expectPrincipal(wallet_1.address);
+        call = chain.callReadOnlyFn(
+            "arkadroids",
+            "get-balance",
+            [types.principal(deployer.address)],
+            deployer.address
+        );
+        call.result.expectUint(0);
 
-        let tokenOwner = chain.callReadOnlyFn(
-            'arkadroids', 
-            'get-owner', 
-            [types.uint(1)], 
-            deployer.address);
-
-        tokenOwner.result.expectOk().expectSome().expectPrincipal(wallet_2.address);
+        call = chain.callReadOnlyFn(
+            "arkadroids",
+            "get-balance",
+            [types.principal(wallet_2.address)],
+            deployer.address
+        );
+        call.result.expectUint(1);
     }
 });
 
@@ -265,3 +256,179 @@ Clarinet.test({
         uri.result.expectOk().expectSome().expectAscii("ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn/{id}.json");
     }
 });
+
+Clarinet.test({
+    name: "Deployer can mint all 120",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let nonDeployer = accounts.get('wallet_1')!;
+
+        let block = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'mint-all', 
+                [], 
+                deployer.address),
+            Tx.contractCall(
+                'arkadroids', 
+                'mint-all', 
+                [], 
+                nonDeployer.address)
+        ]);
+        
+        block.receipts[0].result.expectOk().expectUint(121);
+        block.receipts[1].result.expectErr().expectUint(103);
+        
+        let lastTokenId = chain.callReadOnlyFn(
+            'arkadroids', 
+            'get-last-token-id', 
+            [], 
+            deployer.address);
+
+        lastTokenId.result.expectOk().expectUint(120);
+    }
+});
+
+Clarinet.test({
+    name: "List, unlist and buy Arkadroids on market",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get("wallet_1")!;
+
+        let mintingBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'mint',
+                [], 
+                deployer.address)
+        ]);
+
+        mintingBlock.receipts[0].result.expectOk();
+  
+        let listingBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'list-in-ustx', 
+                [   types.uint(1),
+                    types.uint(100000000),
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                ],
+                deployer.address)
+        ]);
+        listingBlock.receipts[0].result.expectOk().expectBool(true);
+  
+        let unlistBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'unlist-in-ustx', 
+                [
+                    types.uint(1)
+                ], 
+                wallet_1.address)
+        ]);
+        unlistBlock.receipts[0].result.expectErr().expectUint(101);
+  
+        unlistBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'unlist-in-ustx', 
+                [
+                    types.uint(1)
+                ], 
+                deployer.address)
+        ]);
+        unlistBlock.receipts[0].result.expectOk().expectBool(true);
+
+        listingBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'list-in-ustx', 
+                [   types.uint(1),
+                    types.uint(100000000),
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                ],
+                deployer.address)
+        ]);
+        listingBlock.receipts[0].result.expectOk().expectBool(true);
+
+        let buyBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'buy-in-ustx', 
+                [   types.uint(1),
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                ],
+                wallet_1.address),
+            Tx.contractCall(
+                'arkadroids',
+                'buy-in-ustx', 
+                [   types.uint(1),
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                ],
+                wallet_1.address)
+        ]);
+        buyBlock.receipts[0].result.expectOk().expectBool(true);
+        buyBlock.receipts[1].result.expectErr().expectUint(106);
+    }
+  });
+
+  Clarinet.test({
+    name: "Can't transfer Arkadroids while listed on market",
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+        let deployer = accounts.get('deployer')!;
+        let wallet_1 = accounts.get("wallet_1")!;
+
+        let mintingBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'mint',
+                [], 
+                deployer.address)
+        ]);
+
+        mintingBlock.receipts[0].result.expectOk();
+  
+        let listingBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'list-in-ustx', 
+                [   types.uint(1),
+                    types.uint(100000000),
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                ],
+                deployer.address)
+        ]);
+        listingBlock.receipts[0].result.expectOk().expectBool(true);
+
+        let transferBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'transfer', 
+                [types.uint(1), types.principal(deployer.address), types.principal(wallet_1.address)], 
+                deployer.address)
+        ]);
+
+        transferBlock.receipts[0].result.expectErr().expectUint(105);
+
+        let unlistBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids',
+                'unlist-in-ustx', 
+                [
+                    types.uint(1)
+                ], 
+                deployer.address)
+        ]);
+        unlistBlock.receipts[0].result.expectOk().expectBool(true);
+
+        transferBlock = chain.mineBlock([
+            Tx.contractCall(
+                'arkadroids', 
+                'transfer', 
+                [types.uint(1), types.principal(deployer.address), types.principal(wallet_1.address)], 
+                deployer.address)
+        ]);
+
+        transferBlock.receipts[0].result.expectOk();
+    }
+  });

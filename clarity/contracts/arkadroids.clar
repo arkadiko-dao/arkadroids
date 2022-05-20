@@ -4,23 +4,37 @@
 
 ;; Constants
 (define-constant contract-owner tx-sender)
-(define-constant mint-limit u3)
+(define-constant mint-limit u122)
 
 (define-constant err-owner-only (err u100))
 (define-constant err-not-token-owner (err u101))
 (define-constant err-mint-limit-reached (err u102))
 (define-constant err-non-admin-user (err u103))
+(define-constant err-listed (err u105))
+(define-constant err-listing-not-found (err u106))
+(define-constant err-wrong-commission-implementation (err u107))
+(define-constant err-token-not-found (err u108))
 (define-constant err-metadata-frozen (err u111))
 
 ;; Internal variables
-(define-data-var last-token-id uint u0)
+(define-data-var last-token-id uint u1)
 (define-data-var curator-address principal 'SP2N3BAG4GBF8NHRPH6AY4YYH1SP6NK5TGCY7RDFA)
 (define-data-var metadata-frozen bool false)
 (define-data-var ipfs-root (string-ascii 80) "ipfs://QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn/")
 
+;; Maps
+(define-map token-count principal uint)
+(define-map market uint { price: uint, commission: principal })
+
+;; Traits
+(define-trait commission-trait 
+    ((pay (uint uint) (response bool uint)))
+)
+
+
 ;; Read-only
 (define-read-only (get-last-token-id)
-    (ok (var-get last-token-id))
+    (ok (- (var-get last-token-id) u1))
 )
 
 (define-read-only (get-token-uri (token-id uint))
@@ -31,27 +45,82 @@
     (ok (nft-get-owner? arkadroids token-id))
 )
 
+(define-read-only (get-balance (account principal))
+    (default-to u0 (map-get? token-count account))
+)
+
+(define-read-only (get-listing-in-ustx (token-id uint))
+    (map-get? market token-id)
+)
+
 ;; Public
+
+;; Non-Custodial
 (define-public (transfer (token-id uint) (sender principal) (recipient principal))
     (begin
         (asserts! (is-eq tx-sender sender) err-not-token-owner)
-        (nft-transfer? arkadroids token-id sender recipient)
+        (asserts! (is-none (map-get? market token-id)) err-listed)
+        (trnsfr token-id sender recipient)
     )
 )
 
-(define-public (mint (recipient principal))
+(define-public (mint)
     (let
         (
             (token-id (+ (var-get last-token-id) u1))
         )
-        (asserts! (is-eq tx-sender contract-owner) err-owner-only)
+        (asserts! (is-admin-user tx-sender) err-non-admin-user)
         (asserts! (<= token-id mint-limit) err-mint-limit-reached)
-        (try! (nft-mint? arkadroids token-id recipient))
-        (var-set last-token-id token-id)
-        (ok token-id)
+        (mint-many (list true))
     )
 )
 
+(define-public (burn (token-id uint))
+    (begin 
+        (asserts! (is-owner token-id tx-sender) err-not-token-owner)
+        (nft-burn? arkadroids token-id tx-sender)
+    )
+)
+
+(define-public (list-in-ustx (token-id uint) (price uint) (commission-trait-implementation <commission-trait>))
+    (let 
+        (
+            (listing  {price: price, commission: (contract-of commission-trait-implementation)})
+        )
+        (asserts! (is-sender-owner token-id) err-not-token-owner)
+        (map-set market token-id listing)
+        (print (merge listing {a: "list-in-ustx", token-id: token-id}))
+        (ok true)
+    )
+)
+
+(define-public (unlist-in-ustx (token-id uint))
+    (begin
+        (asserts! (is-sender-owner token-id) err-not-token-owner)
+        (map-delete market token-id)
+        (print { a: "unlist-in-ustx", token-id: token-id })
+        (ok true)
+    )
+)
+
+(define-public (buy-in-ustx (token-id uint) (commission-trait-implementation <commission-trait>))
+    (let 
+        (
+            (owner (unwrap! (nft-get-owner? arkadroids token-id) err-token-not-found))
+            (listing (unwrap! (map-get? market token-id) err-listing-not-found))
+            (price (get price listing))
+        )
+        (asserts! (is-eq (contract-of commission-trait-implementation) (get commission listing)) err-wrong-commission-implementation)
+        (try! (stx-transfer? price tx-sender owner))
+        (try! (contract-call? commission-trait-implementation pay token-id price))
+        (try! (trnsfr token-id owner tx-sender))
+        (map-delete market token-id)
+        (print { a: "buy-in-ustx", token-id: token-id })
+        (ok true)
+    )
+)
+
+;; Custodial
 (define-public (set-base-uri (new-base-uri (string-ascii 80)))
     (begin
         (asserts! (is-admin-user tx-sender) err-non-admin-user)
@@ -74,10 +143,67 @@
     )
 )
 
+(define-public (mint-all)
+    (mint-many (list true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true))
+)
+
 ;; Private
 (define-private (is-owner (token-id uint) (user principal))
-    (is-eq user (unwrap! (nft-get-owner? arkadroids token-id) false)))
+    (is-eq user (unwrap! (nft-get-owner? arkadroids token-id) false))
+)
+
+(define-private (is-sender-owner (token-id uint))
+    (let 
+        ((owner (unwrap! (nft-get-owner? arkadroids token-id) false)))
+        (or (is-eq tx-sender owner) (is-eq contract-caller owner))
+    )
+)
 
 (define-private (is-admin-user (caller principal))
     (or (is-eq caller (var-get curator-address)) (is-eq caller contract-owner))
+)
+
+(define-private (mint-many (orders (list 120 bool)))
+    (let 
+        (
+            (last-nft-id (var-get last-token-id))
+            (enabled (asserts! (<= last-nft-id mint-limit) err-mint-limit-reached))
+            (art-addr (var-get curator-address))
+            (id-reached (fold mint-many-iter orders last-nft-id))
+            (current-balance (get-balance tx-sender))
+        )
+        (asserts! (is-admin-user tx-sender) err-non-admin-user)
+        (asserts! (< id-reached mint-limit) err-mint-limit-reached)
+        (begin
+            (var-set last-token-id id-reached)
+            (map-set token-count tx-sender (+ current-balance (- id-reached last-nft-id)))
+        )
+        (ok id-reached)
+  )
+)
+
+(define-private (mint-many-iter (ignore bool) (next-id uint))
+    (if (<= next-id mint-limit)
+        (begin
+            (unwrap! (nft-mint? arkadroids next-id tx-sender) next-id)
+            (+ next-id u1)
+        )
+        next-id
+    )
+)
+
+(define-private (trnsfr (token-id uint) (sender principal) (recipient principal))
+    (match (nft-transfer? arkadroids token-id sender recipient)
+        success
+            (let
+                (
+                    (sender-balance (get-balance sender))
+                    (recipient-balance (get-balance recipient))
+                )
+                (map-set token-count sender (- sender-balance u1))
+                (map-set token-count recipient (+ recipient-balance u1))
+                (ok success)
+            )
+        error (err error)
+    )
 )
