@@ -9,6 +9,14 @@ cache_dir = "/Users/yannisdecl/.clarinet/cache"
 path = "contracts/arkadroids.clar"
 depends_on = ["sip009-nft-trait", "commission-trait"]
 
+[contracts.arkadroids-byzantion-commission]
+path = "contracts/arkadroids-byzantion-commission.clar"
+depends_on = ["commission-trait"]
+
+[contracts.arkadroids-gamma-commission]
+path = "contracts/arkadroids-gamma-commission.clar"
+depends_on = ["commission-trait"]
+
 [contracts.arkadroids-stacks-art-commission]
 path = "contracts/arkadroids-stacks-art-commission.clar"
 depends_on = ["commission-trait"]

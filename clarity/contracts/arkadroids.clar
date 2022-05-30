@@ -17,7 +17,7 @@
 
 ;; Internal variables
 (define-data-var last-token-id uint u1)
-(define-data-var curator-address principal 'SP11YWHSZ2DFAK4W2VRRXM8XH6HYNCD8JXRGZDJVJ)
+(define-data-var curator-address principal 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR)
 (define-data-var metadata-frozen bool false)
 (define-data-var ipfs-root (string-ascii 80) "ipfs://QmWp6KZyebAoXqK4euKNagD1RVZRFvHvdGDD99c4DWo862/")
 
