@@ -1,0 +1,14 @@
+with pass1 as (
+    select sender_address
+    from transactions
+    where (contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v1-1'
+    or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1'
+    or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-multi-hop-swap-v1-1')
+    and ( contract_call_function_name = 'swap-x-for-y' 
+    or contract_call_function_name = 'swap-y-for-x'
+    or contract_call_function_name = 'swap-x-for-z')
+    and status = 1
+)
+
+select distinct sender_address as "Swapped"
+from pass1

@@ -1,0 +1,10 @@
+with pass1 as (
+  select sender_address
+  from transactions txs
+  where contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1'
+  and contract_call_function_name = 'add-to-position'
+  and status = 1
+)
+
+select distinct sender_address as "Added to Liquidity Pool"
+from pass1

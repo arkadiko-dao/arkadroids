@@ -1,0 +1,12 @@
+with pass1 as (
+    select sender_address
+    from transactions
+    where (contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-governance-v1-1'
+    or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-governance-v2-1'
+    or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-governance-v3-1')
+    and (contract_call_function_name = 'vote-for' or contract_call_function_name = 'vote-against')
+    and status = 1
+)
+
+select distinct sender_address as "Voted"
+from pass1
