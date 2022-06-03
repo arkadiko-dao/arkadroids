@@ -102,3 +102,5 @@ typings/
 
 # IntelliJ
 .idea
+ASSETS/*/*
+TODO.md
