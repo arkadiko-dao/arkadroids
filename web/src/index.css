@@ -43,6 +43,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Hacked';
+  src: url('./fonts/Hacked-KerX.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Pixel Operator Bold';
+  src: url('./fonts/PixelOperator-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Syne Mono';
+  src: url('./fonts/SyneMono-Regular.ttf') format('truetype');
+}
+
+
 @tailwind base;
 @tailwind components;
 
@@ -60,6 +76,45 @@
 }
 .draw-arrow.tail-2 {
   animation-delay: 1.2s;
+}
+
+.hacked {
+  font-family: 'Hacked';
+}
+
+.pixel {
+  font-family: 'Pixel Operator Bold';
+}
+
+.syne-mono {
+  font-family: 'Syne Mono';
+}
+
+body {
+  background-color: #0f0f0f;
+}
+
+:root {
+  --reddish:#f06;
+  --greenish:#0fa;
+  --purplish:rgb(149, 0, 255);
+  --half-purplish:rgba(149, 0, 255, 0.65);
+}
+
+.neonText {
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 42px var(--purplish),
+      0 0 82px var(--purplish);
+}
+
+.neonBox {
+  box-shadow:
+      0 0 7px rgba(255, 255, 255, 0.65),
+      0 0 10px rgba(255, 255, 255, 0.65),
+      0 0 42px var(--half-purplish),
+      0 0 82px var(--half-purplish);
 }
 
 @-webkit-keyframes draw {
