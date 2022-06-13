@@ -8,6 +8,7 @@ with pass1 as (
     or contract_call_function_name = 'swap-y-for-x'
     or contract_call_function_name = 'swap-x-for-z')
     and status = 1
+    and ( block_height > 10 /*From*/ and block_height < 10000 /*Until*/ )
 )
 
 select distinct sender_address as "Swapped"

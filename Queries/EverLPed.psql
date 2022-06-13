@@ -4,6 +4,7 @@ with pass1 as (
   where contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-swap-v2-1'
   and contract_call_function_name = 'add-to-position'
   and status = 1
+  and ( block_height > 10 /*From*/ and block_height < 10000 /*Until*/ )
 )
 
 select distinct sender_address as "Added to Liquidity Pool"
