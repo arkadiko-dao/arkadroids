@@ -6,7 +6,7 @@ import {
   getAddressFromPrivateKey,
   TransactionVersion,
   makeContractDeploy,
-  StacksTestnet,
+  StacksMainnet,
 } from '@blockstack/stacks-transactions';
 import BN from 'bn.js';
 require('dotenv').config();
@@ -19,11 +19,7 @@ interface Contract {
 }
 
 const contracts: Contract[] = [
-
-  // Traits
   { name: 'sip009-nft-trait' },
-
-  // Contracts
   { name: 'arkadroids' },
 ];
 
@@ -33,9 +29,9 @@ if (!privateKey) {
   console.error('Provide a private key with `process.env.CONTRACT_PRIVATE_KEY`');
   process.exit(1);
 }
-const address = getAddressFromPrivateKey(privateKey, TransactionVersion.Testnet);
+const address = getAddressFromPrivateKey(privateKey, TransactionVersion.Mainnet);
 
-const network = new StacksTestnet();
+const network = new StacksMainnet();
 network.coreApiUrl = rpcClient.url;
 
 const run = async () => {
@@ -65,13 +61,12 @@ const run = async () => {
 
     console.log(`Deploying ${contractId}`);
 
-    const source = await readFile(`../../clarity/contracts/${contract.file || contract.name}.clar`);
+    const source = await readFile(`../clarity/contracts/${contract.file || contract.name}.clar`);
     const tx = await makeContractDeploy({
       contractName: contract.name,
       codeBody: source.toString('utf8'),
       senderKey: privateKey,
       nonce: new BN(account.nonce + index, 10),
-      fee: new BN(100000, 10),
       network,
     });
 

@@ -146,6 +146,10 @@
   (mint-many (list true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true))
 )
 
+(define-public (mint-twenty)
+  (mint-many (list true true true true true true true true true true true true true true true true true true true true))
+)
+
 ;; Private
 (define-private (is-sender-owner (token-id uint))
   (let 
