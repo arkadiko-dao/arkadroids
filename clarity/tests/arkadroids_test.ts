@@ -404,6 +404,12 @@ Clarinet.test({
         buyBlock.receipts[1].result.expectErr().expectUint(107);
         buyBlock.receipts[2].result.expectOk().expectBool(true);
         buyBlock.receipts[3].result.expectErr().expectUint(106);
+
+        let commision = (25 * 100000000) / 1000
+        let royalty = (50 * 100000000) / 1000
+
+        buyBlock.receipts[2].events.expectSTXTransferEvent(commision, wallet_1.address, 'SP2N3BAG4GBF8NHRPH6AY4YYH1SP6NK5TGCY7RDFA')
+        buyBlock.receipts[2].events.expectSTXTransferEvent(royalty, wallet_1.address, 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR')
     }
   });
 
