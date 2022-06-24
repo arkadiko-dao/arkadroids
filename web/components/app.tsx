@@ -1,5 +1,6 @@
 import React from 'react';
 import { About } from '@components/about';
+import { Eligibility } from '@components/eligibility';
 import { CardGroup } from '@components/card-group';
 import { Footer } from '@components/footer';
 
@@ -115,6 +116,7 @@ export const App: React.FC = () => {
     <div className='dark'>
       <h1 className="hacked text-white text-lg md:text-xl px-10 bg-black">Arkadroids</h1>
       <About />
+      <Eligibility />
       <CardGroup products={products} />
       <Footer />
     </div>
