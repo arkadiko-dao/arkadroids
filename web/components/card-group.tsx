@@ -11,16 +11,16 @@ export interface CardProps {
   eligible: boolean;
 }
 
-export const CardGroup: React.FC<CardProps[]> = ({ products }) => {
-  const cards = products.map((product: CardProps) => (
+export const CardGroup: React.FC<CardProps[]> = ({ droids }) => {
+  const cards = droids.map((droid: CardProps) => (
     <Card
-      id={product.id}
-      href={product.href}
-      imageSrc={product.imageSrc}
-      imageAlt={product.imageAlt}
-      eyes={product.eyes}
-      skin={product.skin}
-      eligible={product.eligible}
+      id={droid.id}
+      href={droid.href}
+      imageSrc={droid.imageSrc}
+      imageAlt={droid.imageAlt}
+      eyes={droid.eyes}
+      skin={droid.skin}
+      eligible={droid.eligible}
     />
   ));
 
