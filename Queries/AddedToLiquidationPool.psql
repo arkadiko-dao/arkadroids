@@ -4,7 +4,7 @@ with pass1 as (
   where contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-liquidation-pool-v1-1'
   and contract_call_function_name = 'stake'
   and status = 1
-  and ( block_height > 10 /*From*/ and block_height < 10000 /*Until*/ )
+  and ( block_height > 34604 /*From: 2021-10-21T12:04:08.000Z*/ and block_height < 56965 /*Until: 2022-04-21T12:04:33.000Z*/ )
 )
 
 select distinct sender_address as "Added to Liquidation Pool"
