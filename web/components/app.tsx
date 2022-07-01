@@ -27,7 +27,11 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (userSession.isUserSignedIn()) {
       const userData = userSession.loadUserData();
-      setState(prevState => ({ ...prevState, userData }));
+      
+      const address = resolveSTXAddress(userData);
+      const eligibility = checkEligibility(address);
+
+      setState(prevState => ({ ...prevState, userData, eligibility }));
 
       const getData = async () => {
         try {

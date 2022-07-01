@@ -1,4 +1,11 @@
 import { UserEligibility } from "./context";
+import * as createdVaultsJSON from '../lists/createdVaults.json';
+import * as liquidatedVaultsJSON from '../lists/liquidatedVaults.json';
+import * as lpedJSON from '../lists/lped.json';
+import * as lydianJSON from '../lists/lydian.json';
+import * as swappedJSON from '../lists/swapped.json';
+import * as votedJSON from '../lists/voted.json';
+import * as addedToLiquidationPoolJSON from '../lists/addedToLiquidationPool.json';
 
 export const eligibilityDroids = (eligibility: UserEligibility) => {
   return [
@@ -120,15 +127,27 @@ export const eligibilityDroids = (eligibility: UserEligibility) => {
 
 export const checkEligibility = (address: string) => {
   // TODO: Check address against each of the lists
-  console.log(address);
-  
+  const createdVaults = createdVaultsJSON.includes(address);
+  const liquidatedVaults = liquidatedVaultsJSON.includes(address);
+  lpedJSON.includes(address);
+  const lydian = lydianJSON.includes(address);
+  const swapped = swappedJSON.includes(address);
+  votedJSON.includes(address);
+  addedToLiquidationPoolJSON.includes(address);
+
+  const arkadikoEligible = createdVaults;
+  const btcEligible = liquidatedVaults;
+  const dikoEligible = false;
+  const usdaEligible = false;
+  const stxEligible = liquidatedVaults || swapped;
+  const lydianEligible = lydian;
 
   return {
-    arkadiko: true,
-    btc: false,
-    diko: false,
-    usda: false,
-    stx: false,
-    ldn: false,
+    arkadiko: arkadikoEligible,
+    btc: btcEligible,
+    diko: dikoEligible,
+    usda: usdaEligible,
+    stx: stxEligible,
+    ldn: lydianEligible,
   };
 }
