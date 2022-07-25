@@ -1,0 +1,216 @@
+{
+    "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+    "nonce": 1595,
+    "fee_rate": "531",
+    "sender_address": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR",
+    "sponsored": false,
+    "post_condition_mode": "allow",
+    "post_conditions": [],
+    "anchor_mode": "any",
+    "is_unanchored": false,
+    "block_hash": "0x05f2c2a779954cfe80714b95975a85438557e860c56b82dee870b39cdd31ab9a",
+    "parent_block_hash": "0xf865dc4b91435dbb78d5a4170f49763a850d34f258309af652c175764974512b",
+    "block_height": 63703,
+    "burn_block_time": 1655030906,
+    "burn_block_time_iso": "2022-06-12T10:48:26.000Z",
+    "parent_burn_block_time": 1655030400,
+    "parent_burn_block_time_iso": "2022-06-12T10:40:00.000Z",
+    "canonical": true,
+    "tx_index": 4,
+    "tx_status": "success",
+    "tx_result": {
+        "hex": "0x0703",
+        "repr": "(ok true)"
+    },
+    "microblock_hash": "0xa701295e45a7cd3a192ecf6979bf4328caccfd6318bbd9910cbcb7c6903de2fd",
+    "microblock_sequence": 2,
+    "microblock_canonical": true,
+    "event_count": 10,
+    "events": [
+        {
+            "event_index": 0,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-freddie-v1-1",
+                "topic": "print",
+                "value": {
+                    "hex": "0x0c0000000306616374696f6e0d0000000a6c69717569646174656404646174610c000000110d61756374696f6e2d656e646564040b6175746f2d7061796f6666030a636f6c6c61746572616c010000000000000000000000000001fae210636f6c6c61746572616c2d746f6b656e0d000000035354580f636f6c6c61746572616c2d747970650d000000055354582d4117637265617465642d61742d626c6f636b2d68656967687401000000000000000000000000000088310464656274010000000000000000000000000000a9e902696401000000000000000000000000000002950d69732d6c69717569646174656404136c6566746f7665722d636f6c6c61746572616c0100000000000000000000000000000000056f776e65720516c126330036fb9f8682b132eb3bdc6b18500563e1107265766f6b65642d737461636b696e67031573746162696c6974792d6665652d6163637275656401000000000000000000000000000000001a73746162696c6974792d6665652d6c6173742d61636372756564010000000000000000000000000000c0d50e737461636b65642d746f6b656e7301000000000000000000000000000000000c737461636b65722d6e616d650d00000007737461636b657217757064617465642d61742d626c6f636b2d686569676874010000000000000000000000000000c0e304747970650d000000057661756c74",
+                    "repr": "(tuple (action \"liquidated\") (data (tuple (auction-ended false) (auto-payoff true) (collateral u129762) (collateral-token \"STX\") (collateral-type \"STX-A\") (created-at-block-height u34865) (debt u43497) (id u661) (is-liquidated false) (leftover-collateral u0) (owner 'SP30JCCR06VXSZ1M2P4SEPEYWDCC501B3W5CVWMPF) (revoked-stacking true) (stability-fee-accrued u0) (stability-fee-last-accrued u49365) (stacked-tokens u0) (stacker-name \"stacker\") (updated-at-block-height u49379))) (type \"vault\"))"
+                }
+            }
+        },
+        {
+            "event_index": 1,
+            "event_type": "fungible_token_asset",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "asset": {
+                "asset_event_type": "transfer",
+                "asset_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.usda-token::usda",
+                "sender": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-liquidation-pool-v1-1",
+                "recipient": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "amount": "43497"
+            }
+        },
+        {
+            "event_index": 2,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.usda-token",
+                "topic": "print",
+                "value": {
+                    "hex": "0x09",
+                    "repr": "none"
+                }
+            }
+        },
+        {
+            "event_index": 3,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-dao",
+                "topic": "print",
+                "value": {
+                    "hex": "0x0c0000000306616374696f6e0d000000066275726e656404646174610c0000000206616d6f756e74010000000000000000000000000000a9e909726563697069656e740616982f3ec112a5f5928a5c96a914bd733793b896a51c61726b6164696b6f2d61756374696f6e2d656e67696e652d76342d3104747970650d00000005746f6b656e",
+                    "repr": "(tuple (action \"burned\") (data (tuple (amount u43497) (recipient 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1))) (type \"token\"))"
+                }
+            }
+        },
+        {
+            "event_index": 4,
+            "event_type": "fungible_token_asset",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "asset": {
+                "asset_event_type": "burn",
+                "asset_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.usda-token::usda",
+                "sender": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "recipient": "",
+                "amount": "43497"
+            }
+        },
+        {
+            "event_index": 5,
+            "event_type": "stx_asset",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "asset": {
+                "asset_event_type": "transfer",
+                "sender": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stx-reserve-v1-1",
+                "recipient": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "amount": "112056"
+            }
+        },
+        {
+            "event_index": 6,
+            "event_type": "stx_asset",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "asset": {
+                "asset_event_type": "transfer",
+                "sender": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "recipient": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-liquidation-rewards-v1-1",
+                "amount": "112056"
+            }
+        },
+        {
+            "event_index": 7,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "topic": "print",
+                "value": {
+                    "hex": "0x0c0000000306616374696f6e0d0000001466696e616c697a652d6c69717569646174696f6e04646174610c0000000b0c61756374696f6e2d747970650d0000000a636f6c6c61746572616c12636f6c6c61746572616c2d616464726573730616982f3ec112a5f5928a5c96a914bd733793b896a50a787374782d746f6b656e11636f6c6c61746572616c2d616d6f756e74010000000000000000000000000001fae210636f6c6c61746572616c2d746f6b656e0d000000035354580d646562742d746f2d7261697365010000000000000000000000000000a9e908646973636f756e7401000000000000000000000000000003e808656e6465642d61740100000000000000000000000000000000026964010000000000000000000000000000015415746f74616c2d636f6c6c61746572616c2d736f6c64010000000000000000000000000001b5b811746f74616c2d646562742d6275726e6564010000000000000000000000000000a9e9087661756c742d6964010000000000000000000000000000029504747970650d0000000761756374696f6e",
+                    "repr": "(tuple (action \"finalize-liquidation\") (data (tuple (auction-type \"collateral\") (collateral-address 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.xstx-token) (collateral-amount u129762) (collateral-token \"STX\") (debt-to-raise u43497) (discount u1000) (ended-at u0) (id u340) (total-collateral-sold u112056) (total-debt-burned u43497) (vault-id u661))) (type \"auction\"))"
+                }
+            }
+        },
+        {
+            "event_index": 8,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "topic": "print",
+                "value": {
+                    "hex": "0x0c0000000306616374696f6e0d000000096275726e2d7573646104646174610c0000000b0c61756374696f6e2d747970650d0000000a636f6c6c61746572616c12636f6c6c61746572616c2d616464726573730616982f3ec112a5f5928a5c96a914bd733793b896a50a787374782d746f6b656e11636f6c6c61746572616c2d616d6f756e74010000000000000000000000000001fae210636f6c6c61746572616c2d746f6b656e0d000000035354580d646562742d746f2d7261697365010000000000000000000000000000a9e908646973636f756e7401000000000000000000000000000003e808656e6465642d61740100000000000000000000000000000000026964010000000000000000000000000000015415746f74616c2d636f6c6c61746572616c2d736f6c64010000000000000000000000000000000011746f74616c2d646562742d6275726e65640100000000000000000000000000000000087661756c742d6964010000000000000000000000000000029504747970650d0000000761756374696f6e",
+                    "repr": "(tuple (action \"burn-usda\") (data (tuple (auction-type \"collateral\") (collateral-address 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.xstx-token) (collateral-amount u129762) (collateral-token \"STX\") (debt-to-raise u43497) (discount u1000) (ended-at u0) (id u340) (total-collateral-sold u0) (total-debt-burned u0) (vault-id u661))) (type \"auction\"))"
+                }
+            }
+        },
+        {
+            "event_index": 9,
+            "event_type": "smart_contract_log",
+            "tx_id": "0x67564c60a9da9a2df5d1bc56ebd793795892fee336f955d95acd440cc45f6a95",
+            "contract_log": {
+                "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+                "topic": "print",
+                "value": {
+                    "hex": "0x0c0000000306616374696f6e0d000000076372656174656404646174610c0000000b0c61756374696f6e2d747970650d0000000a636f6c6c61746572616c12636f6c6c61746572616c2d616464726573730616982f3ec112a5f5928a5c96a914bd733793b896a50a787374782d746f6b656e11636f6c6c61746572616c2d616d6f756e74010000000000000000000000000001fae210636f6c6c61746572616c2d746f6b656e0d000000035354580d646562742d746f2d7261697365010000000000000000000000000000a9e908646973636f756e7401000000000000000000000000000003e808656e6465642d61740100000000000000000000000000000000026964010000000000000000000000000000015415746f74616c2d636f6c6c61746572616c2d736f6c64010000000000000000000000000000000011746f74616c2d646562742d6275726e65640100000000000000000000000000000000087661756c742d6964010000000000000000000000000000029504747970650d0000000761756374696f6e",
+                    "repr": "(tuple (action \"created\") (data (tuple (auction-type \"collateral\") (collateral-address 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.xstx-token) (collateral-amount u129762) (collateral-token \"STX\") (debt-to-raise u43497) (discount u1000) (ended-at u0) (id u340) (total-collateral-sold u0) (total-debt-burned u0) (vault-id u661))) (type \"auction\"))"
+                }
+            }
+        }
+    ],
+    "execution_cost_read_count": 446,
+    "execution_cost_read_length": 1087441,
+    "execution_cost_runtime": 2382059,
+    "execution_cost_write_count": 18,
+    "execution_cost_write_length": 2888,
+    "tx_type": "contract_call",
+    "contract_call": {
+        "contract_id": "SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1",
+        "function_name": "start-auction",
+        "function_signature": "(define-public (start-auction (vault-id uint) (vault-manager trait_reference) (coll-type trait_reference) (oracle trait_reference) (ft trait_reference) (reserve trait_reference) (liquidation-pool trait_reference) (liquidation-rewards trait_reference)))",
+        "function_args": [
+            {
+                "hex": "0x0100000000000000000000000000000295",
+                "repr": "u661",
+                "name": "vault-id",
+                "type": "uint"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a51561726b6164696b6f2d667265646469652d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-freddie-v1-1",
+                "name": "vault-manager",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a51e61726b6164696b6f2d636f6c6c61746572616c2d74797065732d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-collateral-types-v1-1",
+                "name": "coll-type",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a51461726b6164696b6f2d6f7261636c652d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-oracle-v1-1",
+                "name": "oracle",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a50a787374782d746f6b656e",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.xstx-token",
+                "name": "ft",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a51961726b6164696b6f2d7374782d726573657276652d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stx-reserve-v1-1",
+                "name": "reserve",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a51e61726b6164696b6f2d6c69717569646174696f6e2d706f6f6c2d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-liquidation-pool-v1-1",
+                "name": "liquidation-pool",
+                "type": "trait_reference"
+            },
+            {
+                "hex": "0x0616982f3ec112a5f5928a5c96a914bd733793b896a52161726b6164696b6f2d6c69717569646174696f6e2d726577617264732d76312d31",
+                "repr": "'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-liquidation-rewards-v1-1",
+                "name": "liquidation-rewards",
+                "type": "trait_reference"
+            }
+        ]
+    }
+}
