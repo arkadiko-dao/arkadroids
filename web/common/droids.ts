@@ -1,11 +1,11 @@
 import { UserEligibility } from "./context";
-import * as createdVaultsJSON from '../lists/createdVaults.json';
-import * as liquidatedVaultsJSON from '../lists/liquidatedVaults.json';
-import * as lpedJSON from '../lists/lped.json';
-import * as lydianJSON from '../lists/lydian.json';
-import * as swappedJSON from '../lists/swapped.json';
-import * as votedJSON from '../lists/voted.json';
-import * as addedToLiquidationPoolJSON from '../lists/addedToLiquidationPool.json';
+const createdVaultsJSON = require('./lists/createdVaults.json');
+const liquidatedVaultsJSON = require('./lists/liquidatedVaults.json');
+const lpedJSON  = require('./lists/lped.json');
+const lydianJSON = require('./lists/lydian.json');
+const swappedJSON = require('./lists/swapped.json');
+const votedJSON = require('./lists/voted.json');
+const addedToLiquidationPoolJSON = require('./lists/addedToLiquidationPool.json');
 
 export const eligibilityDroids = (eligibility: UserEligibility) => {
   return [
@@ -126,19 +126,18 @@ export const eligibilityDroids = (eligibility: UserEligibility) => {
 
 
 export const checkEligibility = (address: string) => {
-  // TODO: Check address against each of the lists
   const createdVaults = createdVaultsJSON.includes(address);
   const liquidatedVaults = liquidatedVaultsJSON.includes(address);
-  lpedJSON.includes(address);
+  const hasLped = lpedJSON.includes(address);
   const lydian = lydianJSON.includes(address);
   const swapped = swappedJSON.includes(address);
-  votedJSON.includes(address);
-  addedToLiquidationPoolJSON.includes(address);
+  const hasVoted = votedJSON.includes(address);
+  const wasLiquidated = addedToLiquidationPoolJSON.includes(address);
 
   const arkadikoEligible = createdVaults;
   const btcEligible = liquidatedVaults;
-  const dikoEligible = false;
-  const usdaEligible = false;
+  const dikoEligible = hasVoted || wasLiquidated;
+  const usdaEligible = hasLped || wasLiquidated;
   const stxEligible = liquidatedVaults || swapped;
   const lydianEligible = lydian;
 

@@ -19,7 +19,6 @@ export const App: React.FC = () => {
 
   const signOut = () => {
     userSession.signUserOut();
-    console.log('signedOut');
 
     setState(defaultState());
   };
@@ -36,7 +35,6 @@ export const App: React.FC = () => {
       const getData = async () => {
         try {
           const address = resolveSTXAddress(userData);
-          console.log(address);
         } catch (error) {
           console.error(error);
         }
@@ -69,7 +67,6 @@ export const App: React.FC = () => {
       const eligibility = checkEligibility(address);
 
       setState(prevState => ({ ...prevState, userData, eligibility }));
-      console.log(state);
     },
     appDetails: {
       name: 'Arkadroids',
