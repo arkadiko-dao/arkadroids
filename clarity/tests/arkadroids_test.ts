@@ -330,7 +330,7 @@ Clarinet.test({
                 'list-in-ustx', 
                 [   types.uint(1),
                     types.uint(100000000),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 deployer.address)
         ]);
@@ -364,7 +364,7 @@ Clarinet.test({
                 'list-in-ustx', 
                 [   types.uint(1),
                     types.uint(100000000),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 deployer.address)
         ]);
@@ -375,7 +375,7 @@ Clarinet.test({
                 'arkadroids',
                 'buy-in-ustx', 
                 [   types.uint(2),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 wallet_1.address),
             Tx.contractCall(
@@ -389,14 +389,14 @@ Clarinet.test({
                 'arkadroids',
                 'buy-in-ustx', 
                 [   types.uint(1),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 wallet_1.address),
             Tx.contractCall(
                 'arkadroids',
                 'buy-in-ustx', 
                 [   types.uint(1),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 wallet_1.address)
         ]);
@@ -404,6 +404,12 @@ Clarinet.test({
         buyBlock.receipts[1].result.expectErr().expectUint(107);
         buyBlock.receipts[2].result.expectOk().expectBool(true);
         buyBlock.receipts[3].result.expectErr().expectUint(106);
+
+        let commision = (25 * 100000000) / 1000
+        let royalty = (50 * 100000000) / 1000
+
+        buyBlock.receipts[2].events.expectSTXTransferEvent(commision, wallet_1.address, 'SPNWZ5V2TPWGQGVDR6T7B6RQ4XMGZ4PXTEE0VQ0S')
+        buyBlock.receipts[2].events.expectSTXTransferEvent(royalty, wallet_1.address, 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR')
     }
   });
 
@@ -430,7 +436,7 @@ Clarinet.test({
                 'list-in-ustx', 
                 [   types.uint(1),
                     types.uint(100000000),
-                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-stacks-art-commission')
+                    types.principal('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.arkadroids-gamma-commission')
                 ],
                 deployer.address)
         ]);

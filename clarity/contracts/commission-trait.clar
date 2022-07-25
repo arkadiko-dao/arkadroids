@@ -1,3 +1,3 @@
 (define-trait commission
-    ((pay (uint uint) (response bool uint)))
+  ((pay (uint uint) (response bool uint)))
 )
