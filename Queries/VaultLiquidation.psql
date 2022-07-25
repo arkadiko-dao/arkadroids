@@ -1,0 +1,19 @@
+
+  with pass1 as (
+    select tx_hash
+    from transactions txs
+    where ( contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v4-1'
+      or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v3-1'
+      or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v2-1'
+      or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-auction-engine-v1-1')
+    and contract_call_function_name = 'start-auction'
+  )
+
+
+
+select count(distinct tx_hash) as "Closed Vault"
+from pass1
+
+/*
+365 * 24 * 6 blocks per year
+*/

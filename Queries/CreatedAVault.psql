@@ -1,0 +1,11 @@
+with pass1 as (
+  select sender_address
+  from transactions txs
+  where contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-freddie-v1-1'
+  and contract_call_function_name = 'collateralize-and-mint'
+  and status = 1
+  and ( block_height > 34604 /*From: 2021-10-21T12:04:08.000Z*/ and block_height < 56965 /*Until: 2022-04-21T12:04:33.000Z*/ )
+)
+
+select distinct sender_address as "Created a vault"
+from pass1
