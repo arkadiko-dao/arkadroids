@@ -26,7 +26,7 @@ export const Eligibility: React.FC<EligibilityProps> = ({ signOut }) => {
         {state.userData ? (
           <button
             type="button"
-            className="relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-purple-600 border border-transparent rounded-md shadow-sm hover:bg-purple-700 focus:focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            className="relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-transparent border border-transparent rounded-md shadow-sm hover:bg-transparent focus:focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
             onClick={() => signOut()}
           >
             <span>Sign Out</span>
@@ -34,7 +34,7 @@ export const Eligibility: React.FC<EligibilityProps> = ({ signOut }) => {
         ) : (
           <button
             type="button"
-            className="relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-purple-600 border border-transparent rounded-md shadow-sm hover:bg-purple-700 focus:focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            className="relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm shadow-purple/50 bg-purple/20 hover:bg-purple/40 focus:focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
             onClick={() => doOpenAuth()}
           >
             <span>Connect Wallet</span>

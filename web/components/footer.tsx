@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <footer id="footer" className="relative py-16 bg-gray-800 bg-opacity-75 sm:py-48">
-      <div className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <footer id="footer" className="relative py-16 bg-opacity-75 border-t-2 bg-almost-dark sm:py-48 border-purple/20">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">
           <div className="col-span-2 sm:col-span-1 md:col-span-2 sm:pr-16">
             <a className="block" aria-label="Home" href="/">

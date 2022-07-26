@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ signOut }) => {
             </RouterLink>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center p-2 bg-white rounded-md text-almost-black hover:text-almost-black hover:bg-almost-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500">
+            <Popover.Button className="inline-flex items-center justify-center p-2 bg-white rounded-md text-almost-black hover:text-almost-black hover:bg-almost-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple">
               <span className="sr-only">Open menu</span>
               <MenuIcon className="w-6 h-6" aria-hidden="true" />
             </Popover.Button>
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ signOut }) => {
               <button
                 type="button"
                 onClick={() => doOpenAuth()}
-                className="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm shadown-purple/50 bg-purple/20 whitespace-nowrap hover:bg-purple-700"
+                className="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm shadow-purple/50 bg-purple/20 whitespace-nowrap hover:bg-purple/40"
               >
                 Connect wallet
               </button>
@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({ signOut }) => {
                   </svg>
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center p-2 bg-white rounded-md text-almost-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500">
+                  <Popover.Button className="inline-flex items-center justify-center p-2 bg-white rounded-md text-almost-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple">
                     <span className="sr-only">Close menu</span>
                     <XIcon className="w-6 h-6" aria-hidden="true" />
                   </Popover.Button>
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({ signOut }) => {
                 <button
                   type="button"
                   onClick={() => doOpenAuth()}
-                  className="w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm shadown-purple/50 bg-purple/20 whitespace-nowrap hover:bg-purple-700"
+                  className="w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm shadown-purple/50 bg-purple/20 whitespace-nowrap hover:bg-purple/40"
                 >
                   Connect wallet
                 </button>
