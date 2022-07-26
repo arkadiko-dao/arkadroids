@@ -1,44 +1,37 @@
 import React from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-black shadow-sm ring-1 ring-gray-900 ring-opacity-5">
-      <div className="px-6 py-8 mx-auto max-w-7xl lg:px-8">
+    <footer id="footer" className="relative py-16 bg-gray-800 bg-opacity-75 sm:py-48">
+      <div className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">
           <div className="col-span-2 sm:col-span-1 md:col-span-2 sm:pr-16">
-            <div className="flex items-center">
-              <span className="inline-block ml-2 text-lg font-bold align-middle font-headings text-white">
-                Arkadiko
-              </span>
-            </div>
-            <div className="mt-4 text-sm text-white">We bring DeFi to Bitcoin. Arkadiko is an open source and non-custodial liquidity protocol for minting stablecoins, earning interest on deposits and borrowing assets on Stacks.</div>
+            <a className="block" aria-label="Home" href="/">
+              <svg className="w-auto h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474 108">
+                <path fill="#fff" d="M45.037 3.616A6.309 6.309 0 0147.382.977 6.38 6.38 0 0150.788 0h27.17c2.248 0 4.306 1.15 5.442 3.029l57.7 94.64a6.097 6.097 0 01.071 6.246 6.345 6.345 0 01-2.333 2.305 6.412 6.412 0 01-3.182.841h-28.4a6.416 6.416 0 01-4.496-1.808 74.344 74.344 0 00-38.222-19.182c-16.093-2.559-35.05.94-53.723 19.182a6.454 6.454 0 01-8.094.704 6.15 6.15 0 01-2.496-3.461 6.105 6.105 0 01.366-4.24l44.422-94.64h.024zM61.84 12.42l49.061 82.197h13.585L74.36 12.443H61.84v-.023zm25.773 67.829L51.474 19.65 22.601 81.117a69.517 69.517 0 0143.972-7.278c7.574 1.174 14.674 3.522 21.04 6.41zM200.776 34.952L222.088 86H210.28l-4.608-10.944H184L179.464 86h-11.88l21.312-51.048h11.88zm.792 30.168l-6.696-16.056-6.696 16.056h13.392zm35.12-9.864a14.331 14.331 0 011.656-2.16 9.442 9.442 0 012.232-1.872c.864-.576 1.848-1.032 2.952-1.368 1.104-.336 2.352-.504 3.744-.504 1.632 0 3.528.288 5.688.864l-.936 8.856a18.8 18.8 0 01-1.584-.36 11.441 11.441 0 00-1.44-.216 8.112 8.112 0 00-1.44-.144c-1.536 0-2.976.216-4.32.648-1.296.432-2.424 1.032-3.384 1.8a8.719 8.719 0 00-2.304 2.808 7.1 7.1 0 00-.864 3.456V86h-9.936V50.288h9l.936 4.968zm39.68 9.864L291.416 86h-11.88l-9.432-14.256-3.528 3.816V86h-9.936V33.44h9.936V62.6l11.592-12.312h12.096L276.368 65.12zm55.115-14.832V86h-8.568l-1.008-3.816c-1.392 1.872-3.072 3.12-5.04 3.744-1.92.624-3.936.936-6.048.936-2.544 0-4.896-.48-7.056-1.44a18.502 18.502 0 01-5.544-4.032c-1.584-1.728-2.832-3.72-3.744-5.976-.864-2.304-1.296-4.752-1.296-7.344 0-2.592.432-5.016 1.296-7.272.912-2.304 2.16-4.296 3.744-5.976a16.988 16.988 0 015.544-4.032c2.16-1.008 4.512-1.512 7.056-1.512 2.304 0 4.416.36 6.336 1.08 1.92.72 3.504 1.872 4.752 3.456l1.008-3.528h8.568zm-9.936 17.928c0-1.872-.264-3.432-.792-4.68-.48-1.296-1.152-2.328-2.016-3.096a6.787 6.787 0 00-2.952-1.728c-1.104-.384-2.304-.576-3.6-.576a8.71 8.71 0 00-3.672.792 9.96 9.96 0 00-2.952 2.16c-.864.864-1.536 1.92-2.016 3.168-.48 1.2-.72 2.472-.72 3.816 0 1.392.24 2.688.72 3.888a9.91 9.91 0 002.016 3.168c.864.864 1.848 1.56 2.952 2.088a8.71 8.71 0 003.672.792c2.592 0 4.776-.792 6.552-2.376 1.824-1.632 2.76-4.104 2.808-7.416zM373.92 33.44V86h-8.496l-1.44-3.096c-1.104 1.152-2.64 2.112-4.608 2.88-1.92.72-3.936 1.08-6.048 1.08-2.544 0-4.896-.48-7.056-1.44-2.16-1.008-4.032-2.352-5.616-4.032-1.536-1.728-2.76-3.72-3.672-5.976-.864-2.304-1.296-4.752-1.296-7.344 0-2.592.432-5.016 1.296-7.272.912-2.304 2.136-4.296 3.672-5.976a16.78 16.78 0 015.616-4.032c2.16-1.008 4.512-1.512 7.056-1.512 2.256 0 4.248.264 5.976.792a11.673 11.673 0 014.68 2.664V33.44h9.936zm-9.936 34.776c0-1.872-.24-3.432-.72-4.68-.48-1.296-1.152-2.328-2.016-3.096a7.33 7.33 0 00-3.024-1.728c-1.104-.384-2.304-.576-3.6-.576a8.71 8.71 0 00-3.672.792 9.96 9.96 0 00-2.952 2.16c-.816.864-1.464 1.92-1.944 3.168-.48 1.2-.72 2.472-.72 3.816 0 1.392.24 2.688.72 3.888.48 1.2 1.128 2.256 1.944 3.168.864.864 1.848 1.56 2.952 2.088a8.71 8.71 0 003.672.792c2.592 0 4.776-.792 6.552-2.376 1.824-1.632 2.76-4.104 2.808-7.416zM391.188 86h-9.936V50.288h9.936V86zm-4.968-40.608c-1.536 0-2.832-.528-3.888-1.584s-1.584-2.352-1.584-3.888.528-2.832 1.584-3.888c1.056-1.104 2.352-1.656 3.888-1.656s2.832.552 3.888 1.656c1.056 1.056 1.584 2.352 1.584 3.888s-.528 2.832-1.584 3.888-2.352 1.584-3.888 1.584zm32.179 19.728L433.447 86h-11.88l-9.432-14.256-3.528 3.816V86h-9.936V33.44h9.936V62.6l11.592-12.312h12.096L418.399 65.12zm36.37-15.84c2.544 0 4.944.504 7.2 1.512a17.945 17.945 0 015.904 4.032c1.68 1.68 3 3.672 3.96 5.976 1.008 2.256 1.512 4.68 1.512 7.272 0 2.592-.504 5.04-1.512 7.344a19.376 19.376 0 01-3.96 5.976c-1.68 1.68-3.648 3.024-5.904 4.032-2.256.96-4.656 1.44-7.2 1.44-2.592 0-5.016-.48-7.272-1.44-2.256-1.008-4.224-2.352-5.904-4.032a20.482 20.482 0 01-4.032-5.976c-.96-2.304-1.44-4.752-1.44-7.344 0-2.592.48-5.016 1.44-7.272 1.008-2.304 2.352-4.296 4.032-5.976a17.945 17.945 0 015.904-4.032c2.256-1.008 4.68-1.512 7.272-1.512zm0 28.872c1.2 0 2.304-.24 3.312-.72a8.602 8.602 0 002.736-1.944 8.908 8.908 0 001.872-3.024c.48-1.2.72-2.52.72-3.96s-.24-2.784-.72-4.032c-.432-1.248-1.056-2.328-1.872-3.24A8.138 8.138 0 00458.081 59a6.56 6.56 0 00-3.312-.864 6.96 6.96 0 00-3.384.864c-1.056.528-1.992 1.272-2.808 2.232-.768.912-1.392 1.992-1.872 3.24-.432 1.248-.648 2.592-.648 4.032s.216 2.76.648 3.96a10.705 10.705 0 001.872 3.024 9.494 9.494 0 002.808 1.944c1.056.48 2.184.72 3.384.72z"/>
+              </svg>
+            </a>
+            <div className="mt-4 text-sm">We bring DeFi to Bitcoin. Arkadiko is an open source and non-custodial liquidity protocol for minting stablecoins, earning interest on deposits and borrowing assets on Stacks.</div>
             <div className="flex mt-6 space-x-6 md:order-2">
-              <a href="https://arkadikofinance.medium.com/" target="_blank" rel="noopener noreferrer" className="transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
+              <a href="https://arkadikofinance.medium.com/" target="_blank" rel="noopener noreferrer" className="transition duration-300 text-almost-white hover:text-white">
                 <span className="sr-only">Medium</span>
-                <svg className="w-6 h-6" fill="white" clipRule="evenodd">
+                <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" clipRule="evenodd">
                   <path
                     d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z"
                   ></path>
                 </svg>
               </a>
-              <a href="https://app.sigle.io/arkadiko.id.stx" target="_blank" rel="noopener noreferrer" className="transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
-                <span className="sr-only">Sigle</span>
-                <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24">
-                  <path d="M17.46 3.7C16.42 2.37 13.7.42 10.87 2.21L6.2 5.16a4.8 4.8 0 0 0-1.3 7l1.18 1.55c.04.08.04.16-.04.24l-2.26 1.43a.7.7 0 0 0-.27.44c-.03.16 0 .36.12.52l3.3 4.25.15.16a4.47 4.47 0 0 0 6.2.88s.04 0 .04-.04l4.6-2.9c.08-.05 2.07-1.28 2.41-3.3.23-1.2-.11-2.35-1.03-3.5l-1.34-1.76c-.04-.08-.04-.16.04-.24l2.22-1.43a.49.49 0 0 0 .27-.43.65.65 0 0 0-.12-.52l-2.91-3.82Zm-11.6 7.67c-.55-.72-.81-1.6-.7-2.5a3.59 3.59 0 0 1 1.5-2.51l.15-.08c.88-.52 2-.6 3.03-.16.5.24.91.63 1.26 1.07l.57.76c.04.08.04.16-.03.24l-3.07 1.94-.15.12c-.35.28-.58.72-.65 1.2a2 2 0 0 0 .34 1.3l1.96 2.6c.07.11.11.23.11.39 0 .12-.08.28-.2.36-.22.16-.53.16-.68-.08l-3.45-4.65Zm4.01-.08 2.5 3.26-.96.6c-.08-.24-.16-.48-.31-.68l-1.95-2.59a.69.69 0 0 1-.12-.4c0-.11.08-.27.2-.35A.63.63 0 0 1 9.6 11c.07.12.19.2.26.28Zm4.06 6.56c0 1.07-.46 2.03-1.26 2.7A3.26 3.26 0 0 1 8 20l-2.88-3.77c-.03-.08-.03-.16.04-.24l1.69-1.07c.07-.04.15-.04.19.03l1.15 1.52.19.23c.54.68 1.46.88 2.18.44 0 0 .04 0 .04-.04l2.5-1.59c.49.72.83 1.51.83 2.35Zm4.45-5.17c.65.87.92 1.7.76 2.5-.26 1.47-1.83 2.47-1.83 2.47l-2.34 1.47c.08-.24.11-.48.15-.72a4.7 4.7 0 0 0-.96-3.46l-3.33-4.4c-.08-.09-.11-.17-.19-.2l1.84-1.16c.08-.04.15-.04.19.04l1.72 2.27c.23.31.66.4 1 .2l1.38-.88c.08-.04.15-.04.2.04l1.4 1.83Zm-1.8-3.3-1.42.87c-.08.04-.15.04-.2-.04l-2.98-3.9a4.53 4.53 0 0 0-2.3-1.58c-.11-.04-.11-.2-.04-.28l1.84-1.16c2.6-1.63 4.87 1.04 5.02 1.2l2.41 3.18c.04.08.04.16-.03.24l-2.15 1.35-.15.12Z"/>
-                </svg>
-              </a>
-              <a href="https://twitter.com/ArkadikoFinance" target="_blank" rel="noopener noreferrer" className="transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
+              <a href="https://twitter.com/ArkadikoFinance" target="_blank" rel="noopener noreferrer" className="transition duration-300 text-almost-white hover:text-white">
                 <span className="sr-only">Twitter</span>
-                <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
                   ></path>
                 </svg>
               </a>
-              <a href="https://github.com/arkadiko-dao/arkadiko" target="_blank" rel="noopener noreferrer" className="transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
+              <a href="https://github.com/arkadiko-dao/arkadiko" target="_blank" rel="noopener noreferrer" className="transition duration-300 text-almost-white hover:text-white">
                 <span className="sr-only">GitHub</span>
-                <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fillRule="evenodd"
                     d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
@@ -46,54 +39,41 @@ export const Footer = () => {
                   ></path>
                 </svg>
               </a>
-              <a href="https://discord.gg/7UB6JjjCNV" target="_blank" rel="noopener noreferrer" className="transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
+              <a href="https://discord.gg/7UB6JjjCNV" target="_blank" rel="noopener noreferrer" className="transition duration-300 text-almost-white hover:text-white">
                 <span className="sr-only">Discord</span>
-                <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18.93 5.34a16.89 16.89 0 00-4.07-1.23c-.03 0-.05.01-.07.03-.17.3-.37.7-.5 1.01a15.72 15.72 0 00-4.57 0c-.14-.32-.34-.7-.52-1a.06.06 0 00-.06-.04 16.84 16.84 0 00-4.1 1.25A15.95 15.95 0 002.1 16.42a16.8 16.8 0 005 2.45c.02 0 .05 0 .06-.02.39-.51.73-1.05 1.02-1.61a.06.06 0 00-.03-.09c-.54-.2-1.06-.44-1.56-.72a.06.06 0 010-.1l.3-.24a.06.06 0 01.07 0 12.18 12.18 0 0010.05 0h.06l.32.24c.03.03.03.08-.01.1-.5.28-1.02.52-1.56.72a.06.06 0 00-.04.09c.3.56.65 1.1 1.03 1.6.01.03.04.04.07.03a16.75 16.75 0 005.02-2.49 15.85 15.85 0 00-2.98-11.04zM8.68 14.18c-.98 0-1.8-.88-1.8-1.95 0-1.08.8-1.95 1.8-1.95 1.01 0 1.82.88 1.8 1.95 0 1.07-.8 1.95-1.8 1.95zm6.65 0c-.99 0-1.8-.88-1.8-1.95 0-1.08.8-1.95 1.8-1.95s1.81.88 1.8 1.95c0 1.07-.8 1.95-1.8 1.95z"/>
+                </svg>
+              </a>
+              <a href="https://t.me/arkadikofin" target="_blank" rel="noopener noreferrer" className="transition duration-300 text-almost-white hover:text-white">
+                <span className="sr-only">Telegram</span>
+                <svg className="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <path d="M226.328419 494.722069c145.760154-63.505384 242.95642-105.37202 291.588797-125.599908 138.855319-57.754731 167.708265-67.787346 186.514211-68.118629 4.136194-.072862 13.384412.952211 19.375019 5.813175 5.058351 4.104503 6.450106 9.649103 7.116105 13.540622.666 3.891519 1.495328 12.756499.836075 19.683337-7.524619 79.06182-40.083522 270.924008-56.647644 359.474601-7.008902 37.469075-20.809646 50.032265-34.170364 51.261739-29.035934 2.671932-51.084503-19.188971-79.207225-37.623769-44.006507-28.846821-68.867384-46.804056-111.583319-74.953224-49.365654-32.531233-17.363955-50.410965 10.769388-79.63145 7.362629-7.64714 135.295618-124.012084 137.771765-134.568208.309683-1.32022.597085-6.241374-2.326487-8.839924-2.923572-2.59855-7.238511-1.709947-10.352292-1.003233-4.41369 1.001745-74.714655 47.468076-210.902895 139.398991-19.954695 13.702434-38.029038 20.378719-54.223029 20.028857-17.852576-.385695-52.19377-10.094118-77.722918-18.392638-31.312539-10.178472-56.199122-15.559904-54.032059-32.846099 1.12874-9.00372 13.527697-18.2118 37.196872-27.62424Z"/>
                 </svg>
               </a>
             </div>
           </div>
           <div>
             <h3 className="text-sm font-semibold tracking-wider text-white uppercase font-headings">Protocol</h3>
-            <ul className="mt-4 space-y-3">
-              <li><a href="https://arkadiko.finance/arkadiko-whitepaper.pdf" className="text-base transition duration-300 text-white hover:text-gray-700 dark:hover:text-zinc-300">Byzantion</a></li>
-              <li><a href="https://docs.arkadiko.finance/" target="_blank" rel="noopener noreferrer" className="text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">Gamma</a></li>
-              <li><a href="https://github.com/arkadiko-dao/arkadiko/blob/master/SECURITY.md" target="_blank" rel="noopener noreferrer" className="text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">Bug Bounty</a></li>
-              <li><a href="https://arkadiko.finance/brand" className="text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">Brand</a></li>
-              <li><a href="https://arkadiko.finance/arkadiko-EULA.pdf" className="text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">EULA</a></li>
+            <ul className="mt-4 space-y-4">
+              <li><a href="https://github.com/arkadiko-dao/landing/raw/master/public/arkadiko-whitepaper.pdf" className="text-sm transition duration-300 text-almost-white hover:text-white">Whitepaper</a></li>
+              <li><a href="MEDIUM_ARTICLE_LINK_GOES_HERE" target="_blank" rel="noopener noreferrer" className="text-sm transition duration-300 text-almost-white hover:text-white">Documentation</a></li>
+              <li><a href="https://github.com/arkadiko-dao/arkadiko/blob/master/SECURITY.md" target="_blank" rel="noopener noreferrer" className="text-sm transition duration-300 text-almost-white hover:text-white">Bug Bounty</a></li>
             </ul>
           </div>
-          <div className="col-span-2 sm:col-span-1 md:col-span-2">
-            <h3 className="text-sm font-semibold tracking-wider text-white uppercase font-headings">Find the collection on</h3>
-            <ul className="mt-4 space-y-3">
-              <li><a href="https://byzantion.xyz/collection/arkadroids" className="text-base transition duration-300 text-white hover:text-gray-700 dark:hover:text-zinc-300">Byzantion</a></li>
-              <li><a href="https://gamma.io/collections/arkadroids" className="text-base transition duration-300 text-white hover:text-gray-700 dark:hover:text-zinc-300">Gamma</a></li>
-            </ul>
-            <br />
-            <h3 className="text-sm font-semibold tracking-wider text-white uppercase font-headings">Misc</h3>
+          <div>
+            <h3 className="text-sm font-semibold tracking-wider text-white uppercase font-headings">Collection</h3>
             <ul className="mt-4 space-y-4">
-              <li>
-                <a href="https://www.hiro.so/wallet" target="_blank" rel="noopener noreferrer" className="inline-flex text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
-                  <svg className="flex-shrink-0 w-5 h-5 mr-2 text-indigo-600 dark:text-indigo-300" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" /><path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" /></svg>
-                  Hiro Wallet
-                  <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-indigo-100 text-indigo-800">
-                    Web
-                  </span>
-                  <span className="ml-1 inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-indigo-100 text-indigo-800">
-                    Desktop
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.xverse.app/" target="_blank" rel="noopener noreferrer" className="inline-flex text-base transition duration-300 hover:text-gray-700 dark:hover:text-zinc-300">
-                  <svg className="flex-shrink-0 w-5 h-5 mr-2 text-indigo-600 dark:text-indigo-300" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" /><path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" /></svg>
-                  Xverse Wallet
-                  <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-indigo-100 text-indigo-800">
-                    Mobile
-                  </span>
-                </a>
-              </li>
+              <li><a href="#" className="text-sm transition duration-300 text-almost-white hover:text-white">Byzantion</a></li>
+              <li><a href="#" className="text-sm transition duration-300 text-almost-white hover:text-white">Gamma</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold tracking-wider text-white uppercase font-headings">Support</h3>
+            <ul className="mt-4 space-y-4">
+              <li><a href="https://twitter.com/ArkadikoFinance" target="_blank" rel="noopener noreferrer" className="text-sm transition duration-300 text-almost-white hover:text-white">Twitter</a></li>
+              <li><a href="https://discord.gg/7UB6JjjCNV" target="_blank" rel="noopener noreferrer" className="text-sm transition duration-300 text-almost-white hover:text-white">Discord</a></li>
+              <li><a href="https://t.me/arkadikofin" target="_blank" rel="noopener noreferrer" className="text-sm transition duration-300 text-almost-white hover:text-white">Telegram</a></li>
             </ul>
           </div>
         </div>

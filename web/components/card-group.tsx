@@ -26,8 +26,9 @@ export const CardGroup: React.FC<CardProps[]> = ({ droids }) => {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-40 sm:px-6 lg:max-w-7xl lg:px-8 drop-shadow-md">
-        <div className="mt-6 grid grid-cols-1 gap-y-28 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-20">
+      <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 drop-shadow-md">
+        <h2 className="pb-10 text-center font-syne-mono text-medium md:text-lg text-almost-white neonText">Arkadroids</h2>
+        <div className="grid grid-cols-1 mt-6 gap-y-20 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-20">
           {cards}
         </div>
       </div>

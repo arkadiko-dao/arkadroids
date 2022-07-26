@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { Header } from '@components/header';
 import { About } from '@components/about';
 import { Eligibility } from '@components/eligibility';
 import { CardGroup } from '@components/card-group';
 import { Footer } from '@components/footer';
-import { ThemeProvider, theme } from '@blockstack/ui';
 import { Connect } from '@stacks/connect-react';
 import { AuthOptions } from '@stacks/connect';
 import { UserSession, AppConfig } from '@stacks/auth';
@@ -26,7 +26,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (userSession.isUserSignedIn()) {
       const userData = userSession.loadUserData();
-      
+
       const address = resolveSTXAddress(userData);
       const eligibility = checkEligibility(address);
 
@@ -76,17 +76,15 @@ export const App: React.FC = () => {
 
   return (
     <Connect authOptions={authOptions}>
-      <ThemeProvider theme={theme}>
-        <AppContext.Provider value={[state, setState]}>
-          <div className="dark">
-            <h1 className="hacked text-white text-lg md:text-xl px-10 bg-black">Arkadroids</h1>
-            <About />
-            <Eligibility signOut={signOut} />
-            <CardGroup droids={eligibilityDroids(state.eligibility)} />
-            <Footer />
-          </div>
-        </AppContext.Provider>
-      </ThemeProvider>
+      <AppContext.Provider value={[state, setState]}>
+        <div>
+          <Header signOut={signOut} />
+          <About />
+          <Eligibility signOut={signOut} />
+          <CardGroup droids={eligibilityDroids(state.eligibility)} />
+          <Footer />
+        </div>
+      </AppContext.Provider>
     </Connect>
   );
 };

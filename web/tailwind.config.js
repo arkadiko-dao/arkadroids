@@ -25,19 +25,18 @@ module.exports = {
       'gray-card': '#1a1c1e',
       'neon-pink': '#FD3CE3',
       'neon-cyan': '#00F5FF',
+      'purple': '#9500FF'
     },
     extend: {
       fontFamily: {
-        headings: ['Kollektif', ...defaultTheme.fontFamily.sans],
         sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        pixel: ['Pixel Operator Bold', ...defaultTheme.fontFamily.sans],
+        'syne-mono': ['Syne Mono', ...defaultTheme.fontFamily.sans]
       },
     },
   },
   variants: {
-    extend: {
-      backgroundColor: ['checked'],
-      borderColor: ['checked'],
-    },
+    extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [],
 };

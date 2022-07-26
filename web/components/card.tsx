@@ -15,35 +15,29 @@ export const Card: React.FC<CardProps> = ({
       key={id}
       className={
         eligible
-          ? 'group relative bg-gray-card rounded-lg pb-5 neonBox'
-          : 'group relative bg-gray-card rounded-lg pb-5'
+          ? 'group relative bg-gray-card rounded-lg eligible border border-purple/50'
+          : 'group relative bg-gray-card rounded-lg hover:shadow-xl hover:shadow-almost-white/10 transition duration-200 ease-in-out'
       }
     >
       <a href={href}>
-        <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-t-lg overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+        <div className="w-full overflow-hidden rounded-t-lg min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none">
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+            className="object-cover object-center w-full h-full lg:w-full lg:h-full"
           />
         </div>
       </a>
-      <div className="mt-4 flex justify-around px-10">
-        <div>
-          {/* <h3 className="syne-mono text-base text-almost-white">
-                    <a href={product.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      Eyes
-                    </a>
-                  </h3> */}
-          <p className="syne-mono mt-1 text-base text-almost-white">Eyes</p>
-          <p className="syne-mono mt-1 text-base text-almost-white">Skin</p>
+      <dl className="sm:divide-x sm:divide-white/10 sm:grid sm:grid-cols-2 sm:gap-2">
+        <div className="py-4 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-4">
+          <dt className="text-sm font-medium text-almost-white">Eyes</dt>
+          <dd className="mt-1 text-base text-white font-syne-mono neonText sm:mt-0 sm:col-span-2">{eyes}</dd>
         </div>
-        <div>
-          <p className="syne-mono mt-1 text-base text-almost-white">{eyes}</p>
-          <p className="syne-mono mt-1 text-base text-almost-white">{skin}</p>
+        <div className="py-4 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-4">
+          <dt className="text-sm font-medium text-almost-white">Skin</dt>
+          <dd className="mt-1 text-base text-white font-syne-mono neonText sm:mt-0 sm:col-span-2">{skin}</dd>
         </div>
-      </div>
+      </dl>
     </div>
   );
 };
