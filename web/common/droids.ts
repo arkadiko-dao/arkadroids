@@ -127,19 +127,19 @@ export const eligibilityDroids = (eligibility: UserEligibility) => {
 
 export const checkEligibility = (address: string) => {
   const createdVaults = createdVaultsJSON.includes(address);
-  const liquidatedVaults = liquidatedVaultsJSON.includes(address);
+  const wasLiquidated = liquidatedVaultsJSON.includes(address);
   const hasLped = lpedJSON.includes(address);
   const lydian = lydianJSON.includes(address);
   const swapped = swappedJSON.includes(address);
   const hasVoted = votedJSON.includes(address);
-  const wasLiquidated = addedToLiquidationPoolJSON.includes(address);
+  const addedToLiquidationPool = addedToLiquidationPoolJSON.includes(address);
 
-  const arkadikoEligible = createdVaults;
-  const btcEligible = liquidatedVaults;
-  const dikoEligible = hasVoted || wasLiquidated;
-  const usdaEligible = hasLped || wasLiquidated;
-  const stxEligible = liquidatedVaults || swapped;
+  const usdaEligible = createdVaults || wasLiquidated;
+  const btcEligible = hasLped;
+  const stxEligible = addedToLiquidationPool || swapped;
+  const dikoEligible = hasVoted;
   const lydianEligible = lydian;
+  const arkadikoEligible = false;
 
   return {
     arkadiko: arkadikoEligible,
