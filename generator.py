@@ -9,6 +9,8 @@ def write(skin, eyes, specialEdition):
     global droid_id
     droid_id = droid_id + 1
 
+    print("Creating NFT", droid_id, skin, eyes, specialEdition)
+
     unix_timestamp = int(datetime.datetime.timestamp(datetime.datetime.now())*1000)
     # Data to be written
     dictionary = {
@@ -36,13 +38,13 @@ def write(skin, eyes, specialEdition):
     json_object = json.dumps(dictionary, indent = 4)
 
     # Writing to sample.json
-    with open("ASSETS/JSON/" + str(droid_id)+".json", "w") as outfile:
+    with open("assets/json/" + str(droid_id)+".json", "w") as outfile:
 	    outfile.write(json_object)
 
 def makeCollection(token):
-    write("Gold", token, "Yes")
-    for i in range(0,19):
-        write("Silver", token, "No")
+  write("Gold", token, "Yes")
+  for i in range(0,19):
+      write("Silver", token, "No")
 
 # Total 100
 makeCollection("BTC")
