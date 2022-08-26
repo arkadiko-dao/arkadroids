@@ -6,7 +6,7 @@ with pass1 as (
     or contract_call_contract_id = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-governance-v3-1')
     and (contract_call_function_name = 'vote-for' or contract_call_function_name = 'vote-against')
     and status = 1
-    and ( block_height > 34604 /*From: 2021-10-21T12:04:08.000Z*/ and block_height < 56965 /*Until: 2022-04-21T12:04:33.000Z*/ )
+    and ( t.block_height > 34604 /*From: 2021-10-21T12:04:08.000Z*/ and t.block_height < 56965 /*Until: 2022-04-21T12:04:33.000Z*/ )
 )
 
 select distinct sender_address as "Voted"

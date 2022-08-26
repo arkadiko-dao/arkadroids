@@ -3,9 +3,7 @@ with pass2 as (
     select sender, recipient, amount
     from ft_events ft
     join transactions t on t.tx_id= ft.tx_id
-    where (asset_identifier = 'SP3MBWGMCVC9KZ5DTAYFMG1D0AEJCR7NENTM3FTK5.lydian-token::lydian'
-    or asset_identifier = 'SP3MBWGMCVC9KZ5DTAYFMG1D0AEJCR7NENTM3FTK5.staked-lydian-token::staked-lydian'
-    or asset_identifier = 'SP3MBWGMCVC9KZ5DTAYFMG1D0AEJCR7NENTM3FTK5.wrapped-lydian-token::wrapped-lydian')
+    where asset_identifier = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.stdiko-token::stdiko'
     and status=1
     and ( t.block_height > 34604 /*From: 2021-10-21T12:04:08.000Z*/ and t.block_height < 56965 /*Until: 2022-04-21T12:04:33.000Z*/ )
   )
@@ -14,5 +12,5 @@ with pass2 as (
   select recipient as address,sum(amount) as amount from pass1 group by 1
 )
 
-select distinct address as "Ever held Lydian"
+select distinct address as "Ever held stDIKO"
 from pass2

@@ -5,6 +5,7 @@ const lpedJSON  = require('./lists/lped.json');
 const lydianJSON = require('./lists/lydian.json');
 const swappedJSON = require('./lists/swapped.json');
 const votedJSON = require('./lists/voted.json');
+const stdikoJSON = require('./lists/stdiko.json');
 const addedToLiquidationPoolJSON = require('./lists/addedToLiquidationPool.json');
 
 export const eligibilityDroids = (eligibility: UserEligibility) => {
@@ -133,13 +134,14 @@ export const checkEligibility = (address: string) => {
   const swapped = swappedJSON.includes(address);
   const hasVoted = votedJSON.includes(address);
   const addedToLiquidationPool = addedToLiquidationPoolJSON.includes(address);
+  const stdiko = stdikoJSON.includes(address);
 
   const usdaEligible = createdVaults || wasLiquidated;
   const btcEligible = hasLped;
   const stxEligible = addedToLiquidationPool || swapped;
   const dikoEligible = hasVoted;
   const lydianEligible = lydian;
-  const arkadikoEligible = false;
+  const arkadikoEligible = stdiko;
 
   return {
     arkadiko: arkadikoEligible,

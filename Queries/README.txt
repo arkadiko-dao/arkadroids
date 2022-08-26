@@ -1,0 +1,1 @@
+Use https://www.convertcsv.com/csv-to-json.htm to transform the CSV lists to json arrays.
